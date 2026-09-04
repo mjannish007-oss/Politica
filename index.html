@@ -1,531 +1,95 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>POLITIKA – Prototyp 0.3</title>
-  <style>
-    :root{
-      --bg:#0f131a;
-      --panel:#171d27;
-      --panel2:#202838;
-      --text:#f3f5f7;
-      --muted:#aeb7c5;
-      --accent:#75a7ff;
-      --good:#7bd88f;
-      --bad:#ff8383;
-      --border:#2b3547;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:linear-gradient(180deg,#0d1117,#121823 55%,#0d1117);
-      color:var(--text);
-      min-height:100vh;
-      padding-bottom:90px;
-    }
-    header{
-      position:sticky;
-      top:0;
-      z-index:10;
-      padding:16px;
-      background:rgba(15,19,26,.94);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
-    }
-    .brand{
-      font-size:1.05rem;
-      font-weight:900;
-      letter-spacing:.16em;
-    }
-    .subtitle{color:var(--muted);font-size:.82rem;margin-top:3px}
-    main{max-width:720px;margin:0 auto;padding:14px}
-    .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px;
-      margin-bottom:14px;
-      box-shadow:0 8px 30px rgba(0,0,0,.18);
-    }
-    h1,h2,h3{margin-top:0}
-    h1{font-size:1.5rem}
-    h2{font-size:1.13rem}
-    p{line-height:1.45}
-    label{
-      display:block;
-      color:var(--muted);
-      font-size:.84rem;
-      margin:13px 0 6px;
-    }
-    input,select{
-      width:100%;
-      min-height:48px;
-      border-radius:13px;
-      border:1px solid var(--border);
-      background:var(--panel2);
-      color:var(--text);
-      padding:0 13px;
-      font-size:1rem;
-      outline:none;
-    }
-    button{
-      width:100%;
-      min-height:50px;
-      border:0;
-      border-radius:14px;
-      font-size:1rem;
-      font-weight:800;
-      padding:10px 14px;
-      cursor:pointer;
-      touch-action:manipulation;
-    }
-    .primary{background:var(--accent);color:#07111f}
-    .secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
-    .danger{background:#442126;color:#ffd8dc}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .stat{
-      text-align:center;
-      background:var(--panel2);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:11px 7px;
-    }
-    .stat strong{display:block;font-size:1.15rem;margin-top:4px}
-    .muted{color:var(--muted)}
-    .good{color:var(--good)}
-    .bad{color:var(--bad)}
-    .hidden{display:none !important}
-    .action{
-      text-align:left;
-      margin-top:9px;
-      background:var(--panel2);
-      border:1px solid var(--border);
-      color:var(--text);
-    }
-    .action small{display:block;color:var(--muted);font-weight:500;margin-top:4px}
-    nav{
-      position:fixed;
-      left:0;right:0;bottom:0;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:6px;
-      padding:9px max(9px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left));
-      background:rgba(15,19,26,.97);
-      border-top:1px solid var(--border);
-      z-index:20;
-    }
-    nav button{
-      min-height:54px;
-      font-size:.78rem;
-      padding:6px;
-      background:transparent;
-      color:var(--muted);
-      border:1px solid transparent;
-    }
-    nav button.active{background:var(--panel2);color:var(--text);border-color:var(--border)}
-    .event{
-      padding:11px 12px;
-      border-left:3px solid var(--accent);
-      background:var(--panel2);
-      border-radius:10px;
-      margin:8px 0;
-      color:#dde4ed;
-    }
-    .pill{
-      display:inline-block;
-      border:1px solid var(--border);
-      background:var(--panel2);
-      border-radius:999px;
-      padding:5px 9px;
-      font-size:.78rem;
-      margin:2px;
-      color:var(--muted);
-    }
-    .top-space{margin-top:12px}
-    @media (min-width:700px){
-      body{padding-bottom:20px}
-      nav{position:sticky;bottom:auto;top:75px;max-width:720px;margin:0 auto;border:1px solid var(--border);border-radius:16px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>POLITIKA – Prototyp 0.4</title>
+<style>
+:root{--bg:#0d1117;--panel:#161d27;--panel2:#202a39;--text:#f4f7fb;--muted:#aeb8c7;--accent:#79aaff;--good:#80dc97;--bad:#ff8989;--border:#2c384b}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding-bottom:96px;color:var(--text);background:linear-gradient(180deg,#0c1016,#111823 55%,#0c1016);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:20;padding:14px 16px;background:rgba(13,17,23,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.brand{font-weight:900;letter-spacing:.16em}.subtitle{font-size:.8rem;color:var(--muted);margin-top:3px}main{max-width:760px;margin:0 auto;padding:14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 8px 28px rgba(0,0,0,.17)}
+h1,h2,h3{margin-top:0}h1{font-size:1.5rem}h2{font-size:1.12rem}p{line-height:1.45}.muted{color:var(--muted)}.bad{color:var(--bad)}.hidden{display:none!important}
+label{display:block;color:var(--muted);font-size:.84rem;margin:12px 0 6px}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:13px;background:var(--panel2);color:var(--text);font:inherit;padding:12px;outline:none}input,select{min-height:48px}textarea{min-height:130px;resize:vertical}
+button{width:100%;min-height:50px;border-radius:14px;border:0;padding:10px 14px;font:inherit;font-weight:800;cursor:pointer;touch-action:manipulation}.primary{background:var(--accent);color:#07111f}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}.danger{background:#452128;color:#ffdbe0}.top-space{margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{text-align:center;padding:10px 6px;border-radius:14px;background:var(--panel2);border:1px solid var(--border);font-size:.8rem;color:var(--muted)}.stat strong{display:block;color:var(--text);font-size:1.1rem;margin-top:4px}
+.pill{display:inline-block;border:1px solid var(--border);background:var(--panel2);color:var(--muted);border-radius:999px;padding:5px 9px;margin:2px;font-size:.77rem}
+.event{background:var(--panel2);border-left:3px solid var(--accent);border-radius:10px;padding:11px 12px;margin:8px 0;line-height:1.4}.event strong{display:block;margin-bottom:3px}
+.reaction-grid{display:grid;gap:8px}.reaction{padding:11px;background:var(--panel2);border:1px solid var(--border);border-radius:12px}.reaction b{display:block;margin-bottom:4px}.small{font-size:.78rem}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:9px max(9px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left));border-top:1px solid var(--border);background:rgba(13,17,23,.97)}
+nav button{min-height:54px;padding:6px;font-size:.76rem;font-weight:700;background:transparent;color:var(--muted);border:1px solid transparent}nav button.active{background:var(--panel2);color:var(--text);border-color:var(--border)}
+</style>
 </head>
 <body>
-<header>
-  <div class="brand">POLITIKA</div>
-  <div class="subtitle">Politik-Sandbox · Prototyp 0.3</div>
-</header>
-
+<header><div class="brand">POLITIKA</div><div class="subtitle">Politik-Sandbox · Prototyp 0.4</div></header>
 <main>
-  <section id="setupScreen" class="card">
-    <h1>Deine politische Karriere</h1>
-    <p class="muted">Erstelle eine Politikerin oder einen Politiker und kämpfe dich durch Partei, Wahlkampf und Regierung.</p>
+<section id="setupScreen" class="card">
+<h1>Deine politische Karriere</h1>
+<p class="muted">Erstelle deine Figur. Danach kannst du politische Handlungen frei formulieren.</p>
+<label for="nameInput">Name</label><input id="nameInput" value="Alex Berger">
+<label for="partyInput">Partei</label><select id="partyInput"><option>Sozialdemokratische Partei</option><option>Konservative Union</option><option>Liberale Bürgerpartei</option><option>Grüne Allianz</option><option>Bürgerbewegung</option></select>
+<label for="talentInput">Talent</label><select id="talentInput"><option>Redner</option><option>Netzwerker</option><option>Stratege</option><option>Fachpolitiker</option></select>
+<button id="startButton" type="button" class="primary top-space">Karriere starten</button><p id="setupError" class="bad hidden"></p>
+</section>
 
-    <label for="nameInput">Name</label>
-    <input id="nameInput" type="text" value="Alex Berger" autocomplete="name" />
+<section id="gameScreen" class="hidden">
+<div class="card">
+<div id="dateLabel" class="muted">14. März 2026 · 09:00 Uhr</div><h2 id="playerTitle">Alex Berger</h2>
+<div class="stats"><div class="stat">Zustimmung<strong id="approvalStat">35%</strong></div><div class="stat">Macht<strong id="powerStat">18</strong></div><div class="stat">Partei<strong id="partyStat">42%</strong></div></div>
+</div>
 
-    <label for="partyInput">Partei</label>
-    <select id="partyInput">
-      <option value="Sozialdemokratische Partei">Sozialdemokratische Partei</option>
-      <option value="Konservative Union">Konservative Union</option>
-      <option value="Liberale Bürgerpartei">Liberale Bürgerpartei</option>
-      <option value="Grüne Allianz">Grüne Allianz</option>
-      <option value="Bürgerbewegung">Bürgerbewegung</option>
-    </select>
+<section id="screen-overview">
+<div class="card"><h2>Aktuelle Lage</h2><p id="situationText">Du bist ein aufstrebender Abgeordneter. In deiner Partei beginnt die Debatte über die künftige Führung.</p><span id="partyPill" class="pill"></span><span id="talentPill" class="pill"></span><span id="phasePill" class="pill">Opposition</span></div>
+<div class="card"><h2>Politisches Geschehen</h2><div id="eventLog"></div></div>
+</section>
 
-    <label for="talentInput">Politisches Talent</label>
-    <select id="talentInput">
-      <option value="Redner">Redner – stärker in Debatten</option>
-      <option value="Netzwerker">Netzwerker – leichter Mehrheiten bilden</option>
-      <option value="Stratege">Stratege – bessere Kampagnen</option>
-      <option value="Fachpolitiker">Fachpolitiker – mehr Regierungskompetenz</option>
-    </select>
+<section id="screen-action" class="hidden">
+<div class="card"><h2>Freie politische Aktion</h2><p class="muted">Beschreibe frei, was du tun möchtest. Deine Eingabe wird lokal ausgewertet und erzeugt direkte Reaktionen.</p>
+<label for="actionInput">Was möchtest du tun?</label><textarea id="actionInput" placeholder="Beispiel: Ich treffe mich vertraulich mit der Fraktionsvorsitzenden und biete Unterstützung für ihr Rentenkonzept an, wenn sie meine Kandidatur unterstützt."></textarea>
+<button id="doActionButton" class="primary top-space" type="button">Aktion ausführen</button><p class="muted small">Die Uhr läuft dabei noch nicht automatisch weiter.</p></div>
+<div class="card"><h2>Unmittelbare Reaktionen</h2><div id="reactionBox" class="reaction-grid"><div class="reaction muted">Noch keine neue Aktion ausgeführt.</div></div></div>
+<div class="card"><h2>Welt weitersimulieren</h2><p class="muted">Wenn du bereit bist, lässt du Politik, Medien und Öffentlichkeit eigenständig reagieren. Die verstrichene Zeit hängt von der Situation ab.</p><button id="simulateButton" class="secondary" type="button">Nächste Aktion simulieren</button></div>
+</section>
 
-    <button id="startButton" class="primary top-space" type="button">Karriere starten</button>
-    <p id="setupError" class="bad hidden" aria-live="polite"></p>
-    <p class="muted" style="font-size:.78rem;margin-bottom:0">Hinweis: Falls du die Datei in einer Vorschau innerhalb einer App öffnest und Buttons nicht reagieren, öffne die HTML-Datei direkt in Safari, Chrome oder einem anderen Browser.</p>
-  </section>
+<section id="screen-actors" class="hidden"><div class="card"><h2>Wichtige Akteure</h2><div id="actorsBox" class="reaction-grid"></div></div></section>
 
-  <section id="gameScreen" class="hidden">
-    <div class="card">
-      <div class="muted" id="turnLabel">Woche 1 · Oppositionszeit</div>
-      <h2 id="playerTitle">Alex Berger</h2>
-      <div class="stats">
-        <div class="stat">Zustimmung<strong id="approvalStat">35%</strong></div>
-        <div class="stat">Macht<strong id="powerStat">18</strong></div>
-        <div class="stat">Partei<strong id="partyStat">42%</strong></div>
-      </div>
-    </div>
-
-    <section id="screen-overview">
-      <div class="card">
-        <h2>Politische Lage</h2>
-        <p id="overviewText">Die nächste Bundestagswahl rückt näher. Innerhalb deiner Partei ist noch offen, wer den Wahlkampf anführen wird.</p>
-        <div>
-          <span class="pill" id="partyPill"></span>
-          <span class="pill" id="talentPill"></span>
-        </div>
-      </div>
-      <div class="card">
-        <h2>Letzte Ereignisse</h2>
-        <div id="eventLog">
-          <div class="event">Du hast deine politische Karriere begonnen.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="screen-election" class="hidden">
-      <div class="card">
-        <h2>Wahlkampf</h2>
-        <p class="muted">Baue Bekanntheit und Zustimmung auf. Jede Aktion kostet eine Woche, aber keine Energie und kein Geld.</p>
-        <button class="action" data-action="speech">Große Rede halten<small>Chance auf Zustimmung, besonders gut für Redner.</small></button>
-        <button class="action" data-action="door">Bürgerdialog organisieren<small>Stärkt Zustimmung und Parteibasis.</small></button>
-        <button class="action" data-action="debate">TV-Debatte bestreiten<small>Hohes Risiko, hohe Belohnung.</small></button>
-        <button class="action" data-action="party">Parteiführung überzeugen<small>Erhöht deinen Einfluss innerhalb der Partei.</small></button>
-      </div>
-
-      <div class="card">
-        <h2>Kandidatur</h2>
-        <p id="candidateStatus">Für eine Spitzenkandidatur brauchst du mindestens 50 % Parteirückhalt.</p>
-        <button id="candidateButton" class="primary" type="button">Kandidatur beantragen</button>
-      </div>
-    </section>
-
-    <section id="screen-cabinet" class="hidden">
-      <div class="card">
-        <h2>Kabinett & Mehrheiten</h2>
-        <p id="cabinetIntro" class="muted">Noch bist du nicht Regierungschef. Trotzdem kannst du bereits politische Allianzen aufbauen.</p>
-
-        <button class="action" data-action="compromise">Kompromiss anbieten<small>Verlässlich, aber kostet etwas Popularität.</small></button>
-        <button class="action" data-action="pressure">Politischen Druck ausüben<small>Kann Macht bringen, aber Beziehungen verschlechtern.</small></button>
-        <button class="action" data-action="expertise">Mit Fachwissen überzeugen<small>Besonders gut für Fachpolitiker.</small></button>
-      </div>
-    </section>
-
-    <section id="screen-politician" class="hidden">
-      <div class="card">
-        <h2>Politikerprofil</h2>
-        <p><strong id="profileName"></strong></p>
-        <p class="muted" id="profileParty"></p>
-        <p>Talent: <strong id="profileTalent"></strong></p>
-        <p>Karrierestufe: <strong id="profileCareer">Abgeordneter</strong></p>
-      </div>
-      <div class="card">
-        <h2>Spielstand</h2>
-        <button id="saveButton" class="secondary" type="button">Spiel speichern</button>
-        <button id="resetButton" class="danger top-space" type="button">Neues Spiel</button>
-      </div>
-    </section>
-  </section>
+<section id="screen-profile" class="hidden"><div class="card"><h2>Politikerprofil</h2><p><strong id="profileName"></strong></p><p class="muted" id="profileParty"></p><p>Talent: <strong id="profileTalent"></strong></p><p>Karriere: <strong id="careerLabel">Abgeordneter</strong></p></div>
+<div class="card"><h2>Spielstand</h2><button id="saveButton" class="secondary" type="button">Spiel speichern</button><button id="resetButton" class="danger top-space" type="button">Neues Spiel</button></div></section>
+</section>
 </main>
 
-<nav id="bottomNav" class="hidden">
-  <button type="button" data-screen="overview" class="active">Übersicht</button>
-  <button type="button" data-screen="election">Wahlkampf</button>
-  <button type="button" data-screen="cabinet">Kabinett</button>
-  <button type="button" data-screen="politician">Politiker</button>
-</nav>
+<nav id="bottomNav" class="hidden"><button data-screen="overview" class="active">Übersicht</button><button data-screen="action">Aktion</button><button data-screen="actors">Akteure</button><button data-screen="profile">Profil</button></nav>
 
 <script>
-(function () {
-  "use strict";
-
-  const initialState = {
-    started: false,
-    name: "",
-    party: "",
-    talent: "",
-    week: 1,
-    approval: 35,
-    power: 18,
-    partySupport: 42,
-    candidate: false,
-    government: false,
-    events: []
-  };
-
-  let state = { ...initialState };
-
-  const $ = (id) => document.getElementById(id);
-
-  function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-  }
-
-  function addEvent(text) {
-    state.events.unshift(text);
-    state.events = state.events.slice(0, 8);
-    renderEvents();
-  }
-
-  function renderEvents() {
-    const log = $("eventLog");
-    log.innerHTML = "";
-    state.events.forEach(function (text) {
-      const div = document.createElement("div");
-      div.className = "event";
-      div.textContent = text;
-      log.appendChild(div);
-    });
-  }
-
-  function renderStats() {
-    $("approvalStat").textContent = Math.round(state.approval) + "%";
-    $("powerStat").textContent = Math.round(state.power);
-    $("partyStat").textContent = Math.round(state.partySupport) + "%";
-    $("turnLabel").textContent = "Woche " + state.week + " · " + (state.government ? "Regierungszeit" : "Politischer Aufstieg");
-    $("candidateStatus").textContent = state.candidate
-      ? "Du bist offiziell Spitzenkandidat deiner Partei."
-      : "Für eine Spitzenkandidatur brauchst du mindestens 50 % Parteirückhalt.";
-    $("candidateButton").textContent = state.candidate ? "Kandidatur bestätigt" : "Kandidatur beantragen";
-    $("candidateButton").disabled = state.candidate;
-  }
-
-  function renderProfile() {
-    $("playerTitle").textContent = state.name;
-    $("partyPill").textContent = state.party;
-    $("talentPill").textContent = state.talent;
-    $("profileName").textContent = state.name;
-    $("profileParty").textContent = state.party;
-    $("profileTalent").textContent = state.talent;
-  }
-
-  function showScreen(name) {
-    ["overview", "election", "cabinet", "politician"].forEach(function (screen) {
-      $("screen-" + screen).classList.toggle("hidden", screen !== name);
-    });
-    document.querySelectorAll("#bottomNav button").forEach(function (button) {
-      button.classList.toggle("active", button.dataset.screen === name);
-    });
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function safeStorageSet(key, value) {
-    try {
-      localStorage.setItem(key, value);
-      return true;
-    } catch (error) {
-      console.warn("Lokales Speichern ist in diesem Browser/Dateimodus nicht verfügbar.", error);
-      return false;
-    }
-  }
-
-  function safeStorageGet(key) {
-    try {
-      return localStorage.getItem(key);
-    } catch (error) {
-      console.warn("Lokales Laden ist in diesem Browser/Dateimodus nicht verfügbar.", error);
-      return null;
-    }
-  }
-
-  function safeStorageRemove(key) {
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.warn("Lokaler Speicher konnte nicht gelöscht werden.", error);
-    }
-  }
-
-  function saveGame(showMessage) {
-    const ok = safeStorageSet("politikaSave03", JSON.stringify(state));
-    if (showMessage) {
-      addEvent(ok
-        ? "Spielstand gespeichert."
-        : "Speichern ist in diesem Dateimodus nicht verfügbar. Das Spiel selbst funktioniert trotzdem.");
-    }
-    return ok;
-  }
-
-  function loadGame() {
-    const raw = safeStorageGet("politikaSave03");
-    if (!raw) return false;
-    try {
-      const loaded = JSON.parse(raw);
-      if (!loaded || !loaded.started) return false;
-      state = Object.assign({}, initialState, loaded);
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  }
-
-  function enterGame() {
-    $("setupScreen").classList.add("hidden");
-    $("gameScreen").classList.remove("hidden");
-    $("bottomNav").classList.remove("hidden");
-    renderProfile();
-    renderStats();
-    renderEvents();
-    showScreen("overview");
-  }
-
-  function startCareer() {
-    const name = $("nameInput").value.trim();
-    const party = $("partyInput").value;
-    const talent = $("talentInput").value;
-
-    if (!name) {
-      $("setupError").textContent = "Bitte gib deinem Politiker einen Namen.";
-      $("setupError").classList.remove("hidden");
-      return;
-    }
-
-    $("setupError").classList.add("hidden");
-
-    state = {
-      ...initialState,
-      started: true,
-      name: name,
-      party: party,
-      talent: talent,
-      events: ["Du hast deine politische Karriere begonnen."]
-    };
-
-    enterGame();
-    saveGame(false);
-  }
-
-  function nextWeek() {
-    state.week += 1;
-    renderStats();
-    saveGame(false);
-  }
-
-  function performAction(action) {
-    let approval = 0;
-    let power = 0;
-    let party = 0;
-    let text = "";
-
-    if (action === "speech") {
-      approval = state.talent === "Redner" ? 5 : 3;
-      party = 1;
-      text = "Deine Rede findet Resonanz. Medien greifen mehrere Aussagen auf.";
-    } else if (action === "door") {
-      approval = 3;
-      party = 2;
-      text = "Der Bürgerdialog stärkt dein Profil an der Parteibasis.";
-    } else if (action === "debate") {
-      const success = Math.random() > 0.35;
-      approval = success ? 6 : -4;
-      power = success ? 2 : -1;
-      text = success
-        ? "Du überzeugst in der TV-Debatte und gewinnst sichtbar an Profil."
-        : "Die TV-Debatte läuft schlecht. Deine Gegner nutzen mehrere Patzer.";
-    } else if (action === "party") {
-      party = state.talent === "Netzwerker" ? 6 : 4;
-      power = 2;
-      text = "Hinter den Kulissen sicherst du dir wichtige Unterstützung.";
-    } else if (action === "compromise") {
-      approval = -1;
-      power = 4;
-      text = "Ein Kompromiss verschafft dir neue Verbündete, ist aber öffentlich schwer zu verkaufen.";
-    } else if (action === "pressure") {
-      const success = Math.random() > 0.45;
-      power = success ? 6 : -2;
-      party = success ? 1 : -3;
-      text = success
-        ? "Dein Druck zeigt Wirkung. Ein wichtiger Rivale lenkt ein."
-        : "Der Druckversuch geht nach hinten los und sorgt für Widerstand.";
-    } else if (action === "expertise") {
-      power = state.talent === "Fachpolitiker" ? 6 : 3;
-      approval = 1;
-      text = "Mit einem sachlich starken Auftritt gewinnst du politische Glaubwürdigkeit.";
-    }
-
-    state.approval = clamp(state.approval + approval, 0, 100);
-    state.power = clamp(state.power + power, 0, 100);
-    state.partySupport = clamp(state.partySupport + party, 0, 100);
-
-    addEvent(text);
-    nextWeek();
-  }
-
-  function requestCandidacy() {
-    if (state.partySupport < 50) {
-      addEvent("Die Parteiführung lehnt deine Kandidatur ab. Dir fehlt noch interner Rückhalt.");
-      state.partySupport = clamp(state.partySupport - 1, 0, 100);
-    } else {
-      state.candidate = true;
-      state.power = clamp(state.power + 10, 0, 100);
-      addEvent("Geschafft: Deine Partei nominiert dich als Spitzenkandidat.");
-      $("overviewText").textContent = "Du bist Spitzenkandidat. Jetzt entscheidet der Wahlkampf über deine politische Zukunft.";
-    }
-    nextWeek();
-  }
-
-  $("startButton").addEventListener("click", startCareer);
-
-  document.querySelectorAll("#bottomNav button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      showScreen(button.dataset.screen);
-    });
-  });
-
-  document.querySelectorAll("[data-action]").forEach(function (button) {
-    button.addEventListener("click", function () {
-      performAction(button.dataset.action);
-    });
-  });
-
-  $("candidateButton").addEventListener("click", requestCandidacy);
-
-  $("saveButton").addEventListener("click", function () {
-    saveGame(true);
-  });
-
-  $("resetButton").addEventListener("click", function () {
-    safeStorageRemove("politikaSave03");
-    state = { ...initialState };
-    location.reload();
-  });
-
-  if (loadGame()) {
-    enterGame();
-  }
+(function(){
+"use strict";
+const initialState={started:false,name:"",party:"",talent:"",approval:35,power:18,partySupport:42,currentTime:"2026-03-14T09:00:00",phase:"Opposition",career:"Abgeordneter",events:[],lastAction:"",pendingContext:null,actors:[{name:"Mara König",role:"Fraktionsvorsitzende",relation:52,stance:"pragmatisch"},{name:"Jonas Feld",role:"Parteistratege",relation:45,stance:"vorsichtig"},{name:"Lea Hartmann",role:"Rivalin im Parteivorstand",relation:31,stance:"ehrgeizig"},{name:"Thomas Reuter",role:"Innenpolitiker",relation:57,stance:"loyal"}]};
+let state=JSON.parse(JSON.stringify(initialState));
+const $=id=>document.getElementById(id);
+const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+function safeSet(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}}
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeRemove(k){try{localStorage.removeItem(k)}catch(e){}}
+function saveGame(show){const ok=safeSet("politikaSave04",JSON.stringify(state));if(show)addEvent(ok?"Spielstand gespeichert.":"Lokales Speichern ist in diesem Browser nicht verfügbar.","System")}
+function loadGame(){const raw=safeGet("politikaSave04");if(!raw)return false;try{const x=JSON.parse(raw);if(!x||!x.started)return false;state=Object.assign(JSON.parse(JSON.stringify(initialState)),x);return true}catch(e){return false}}
+function formatDate(iso){const d=new Date(iso);return new Intl.DateTimeFormat("de-DE",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(d).replace(","," ·")+" Uhr"}
+function addMinutes(m){const d=new Date(state.currentTime);d.setMinutes(d.getMinutes()+m);state.currentTime=d.toISOString().slice(0,19)}
+function addEvent(text,source){state.events.unshift({text:text,source:source||"Politik",time:state.currentTime});state.events=state.events.slice(0,12);renderEvents()}
+function renderEvents(){const box=$("eventLog");box.innerHTML="";if(!state.events.length){box.innerHTML='<div class="event muted">Noch keine Ereignisse.</div>';return}state.events.forEach(ev=>{const d=document.createElement("div");d.className="event";const h=document.createElement("strong");h.textContent=ev.source+" · "+formatDate(ev.time);const t=document.createElement("div");t.textContent=ev.text;d.append(h,t);box.appendChild(d)})}
+function renderActors(){const box=$("actorsBox");box.innerHTML="";state.actors.forEach(a=>{const d=document.createElement("div");d.className="reaction";d.innerHTML="<b>"+a.name+"</b><span class='muted'>"+a.role+" · "+a.stance+"</span><p>Beziehung: <strong>"+Math.round(a.relation)+"/100</strong></p>";box.appendChild(d)})}
+function renderAll(){$("dateLabel").textContent=formatDate(state.currentTime);$("playerTitle").textContent=state.name;$("approvalStat").textContent=Math.round(state.approval)+"%";$("powerStat").textContent=Math.round(state.power);$("partyStat").textContent=Math.round(state.partySupport)+"%";$("partyPill").textContent=state.party;$("talentPill").textContent=state.talent;$("phasePill").textContent=state.phase;$("profileName").textContent=state.name;$("profileParty").textContent=state.party;$("profileTalent").textContent=state.talent;$("careerLabel").textContent=state.career;renderEvents();renderActors()}
+function showScreen(name){["overview","action","actors","profile"].forEach(s=>$("screen-"+s).classList.toggle("hidden",s!==name));document.querySelectorAll("#bottomNav button").forEach(b=>b.classList.toggle("active",b.dataset.screen===name));window.scrollTo({top:0,behavior:"smooth"})}
+function enterGame(){$("setupScreen").classList.add("hidden");$("gameScreen").classList.remove("hidden");$("bottomNav").classList.remove("hidden");renderAll();showScreen("overview")}
+function startCareer(){const name=$("nameInput").value.trim();if(!name){$("setupError").textContent="Bitte gib einen Namen ein.";$("setupError").classList.remove("hidden");return}$("setupError").classList.add("hidden");state=JSON.parse(JSON.stringify(initialState));state.started=true;state.name=name;state.party=$("partyInput").value;state.talent=$("talentInput").value;state.events=[{text:"Du beginnst deine politische Karriere. Innerhalb der Partei wird bereits über die nächste Führungsriege gesprochen.",source:"Karriere",time:state.currentTime}];enterGame();saveGame(false)}
+function classifyAction(text){const t=text.toLowerCase(),c=[];if(/treff|gespräch|rede|telefon|spreche|verhandle|überzeuge|bitte|biete/.test(t))c.push("diplomacy");if(/presse|medien|interview|tv|öffentlich|post|social|instagram|tiktok/.test(t))c.push("media");if(/angriff|kritisiere|druck|drohe|skandal|enthülle|leak|gegen/.test(t))c.push("aggressive");if(/gesetz|konzept|reform|haushalt|steuer|rente|klima|wirtschaft|bildung|innenpolitik/.test(t))c.push("policy");if(/heimlich|vertraulich|inoffiziell/.test(t))c.push("secret");if(/bürger|wähler|veranstaltung|kundgebung|markt|besuch/.test(t))c.push("public");if(!c.length)c.push("general");return c}
+function actorReaction(a,c){let d=0;if(c.includes("diplomacy"))d+=state.talent==="Netzwerker"?4:2;if(c.includes("policy"))d+=a.stance==="pragmatisch"?2:1;if(c.includes("aggressive"))d+=a.stance==="ehrgeizig"?-4:-2;if(c.includes("secret"))d+=a.stance==="vorsichtig"?-2:1;a.relation=clamp(a.relation+d,0,100);if(a.relation>=60)return a.name+" zeigt sich offen und sucht nach einem konkreten gemeinsamen Nenner.";if(a.relation>=40)return a.name+" reagiert abwartend und will erst sehen, ob deine Initiative politisch trägt.";return a.name+" bleibt skeptisch und vermutet hinter deinem Schritt vor allem Machtpolitik."}
+function citizenReaction(c){let d=0,t="Für die breite Öffentlichkeit bleibt die Aktion zunächst eher Hintergrundpolitik.";if(c.includes("public")){d=3;t="Viele Bürger nehmen den direkten Kontakt positiv wahr."}else if(c.includes("policy")){d=1;t="Die Öffentlichkeit reagiert interessiert, aber noch ohne klare Begeisterung."}else if(c.includes("aggressive")){d=-2;t="Ein Teil der Wähler empfindet den Ton als unnötig konfrontativ."}if(state.talent==="Redner"&&c.includes("media"))d+=2;state.approval=clamp(state.approval+d,0,100);return t}
+function mediaReaction(c){if(c.includes("media")&&c.includes("aggressive"))return"Die Medien greifen deine Aussagen sofort auf und stellen den Konflikt in den Mittelpunkt.";if(c.includes("media"))return"Mehrere Redaktionen berichten über deinen Auftritt. Deine Bekanntheit wächst.";if(c.includes("secret"))return"Die Aktion bleibt vorerst außerhalb der Öffentlichkeit. Ein Leak könnte die Lage später verändern.";if(c.includes("policy"))return"Politikredaktionen erwähnen deinen Vorstoß, behandeln ihn aber zunächst als Sachthema.";return"Die Medien registrieren den Schritt, schenken ihm aber noch wenig Aufmerksamkeit."}
+function doFreeAction(){const text=$("actionInput").value.trim();if(!text){$("reactionBox").innerHTML='<div class="reaction bad">Bitte beschreibe zuerst deine Aktion.</div>';return}const c=classifyAction(text);state.lastAction=text;state.pendingContext={cats:c,action:text};let p=0,ps=0;if(c.includes("diplomacy"))p+=state.talent==="Netzwerker"?3:1;if(c.includes("policy"))p+=state.talent==="Fachpolitiker"?3:1;if(c.includes("media"))p+=state.talent==="Redner"?2:1;if(c.includes("aggressive"))ps-=1;if(c.includes("secret"))ps+=1;state.power=clamp(state.power+p,0,100);state.partySupport=clamp(state.partySupport+ps,0,100);const a1=state.actors[Math.floor(Math.random()*state.actors.length)];const rest=state.actors.filter(a=>a!==a1);const a2=rest[Math.floor(Math.random()*rest.length)];const rs=[{title:a1.name,text:actorReaction(a1,c)},{title:a2.name,text:actorReaction(a2,c)},{title:"Bürger & Wähler",text:citizenReaction(c)},{title:"Medien",text:mediaReaction(c)}];$("reactionBox").innerHTML="";rs.forEach(r=>{const d=document.createElement("div");d.className="reaction";d.innerHTML="<b>"+r.title+"</b><span>"+r.text+"</span>";$("reactionBox").appendChild(d)});addEvent("Du handelst: „"+text+"“","Deine Aktion");renderAll();saveGame(false);$("actionInput").value=""}
+function simulateNext(){const ctx=state.pendingContext||{cats:["general"],action:""},c=ctx.cats;let min=30,max=360;if(c.includes("secret")){min=60;max=720}if(c.includes("media")){min=120;max=1440}if(c.includes("policy")){min=360;max=2880}if(c.includes("diplomacy")&&c.includes("policy")){min=720;max=4320}addMinutes(Math.floor(min+Math.random()*(max-min+1)));let e="",r=Math.random();if(ctx.action){if(c.includes("diplomacy")&&r>.45){state.partySupport=clamp(state.partySupport+2,0,100);e=pick(["Hinter den Kulissen spricht sich herum, dass du zunehmend eigene Mehrheiten organisieren kannst.","Ein weiterer Parteikollege signalisiert Gesprächsbereitschaft.","Deine Initiative löst neue Gespräche innerhalb der Fraktion aus."])}else if(c.includes("media")&&r>.5){state.approval=clamp(state.approval+2,0,100);e="Die Berichterstattung hält an. Eine neue Umfrage zeigt einen kleinen Bekanntheitsgewinn für dich."}else if(c.includes("aggressive")&&r<.5){state.approval=clamp(state.approval-2,0,100);e="Die politische Gegenseite kontert öffentlich. Der Konflikt beginnt, deine Botschaft zu überlagern."}else if(c.includes("policy")){state.power=clamp(state.power+2,0,100);e="Fachpolitiker mehrerer Lager beschäftigen sich mit deinem Vorschlag. Das Thema gewinnt an Gewicht."}else e=pick(["Die politische Lage entwickelt sich weiter, ohne dass ein einzelnes Ereignis alles überlagert.","Mehrere interne Gespräche verändern langsam die Kräfteverhältnisse in deiner Partei.","Neue Umfragen und Medienberichte sorgen für Bewegung, aber noch nicht für einen Durchbruch."])}else e=pick(["Die Regierung kündigt ein neues wirtschaftspolitisches Paket an.","Eine aktuelle Umfrage verändert die Stimmung innerhalb mehrerer Parteien.","Ein Minister sorgt mit einem Interview für Streit in der Regierungskoalition.","Ein wichtiges gesellschaftliches Thema dominiert plötzlich die Nachrichtenlage."]);state.actors.forEach(a=>a.relation=clamp(a.relation+(Math.random()*4-2),0,100));if(state.partySupport>=60&&state.career==="Abgeordneter"){state.career="Führungsfigur der Fraktion";state.power=clamp(state.power+5,0,100);addEvent("Dein wachsender Rückhalt macht dich zu einer ernsthaften Führungsfigur innerhalb der Fraktion.","Karriere")}addEvent(e,"Simulation");state.pendingContext=null;$("reactionBox").innerHTML='<div class="reaction muted">Die Welt wurde weiter simuliert. Du kannst jetzt eine neue Aktion frei formulieren.</div>';renderAll();saveGame(false)}
+$("startButton").addEventListener("click",startCareer);$("doActionButton").addEventListener("click",doFreeAction);$("simulateButton").addEventListener("click",simulateNext);document.querySelectorAll("#bottomNav button").forEach(b=>b.addEventListener("click",()=>showScreen(b.dataset.screen)));$("saveButton").addEventListener("click",()=>saveGame(true));$("resetButton").addEventListener("click",()=>{safeRemove("politikaSave04");state=JSON.parse(JSON.stringify(initialState));location.reload()});if(loadGame())enterGame();
 })();
 </script>
 </body>
